@@ -25,3 +25,9 @@ def test_repo_can_be_found(github_api):
 def test_repo_cannot_be_found(github_api):
     r = github_api.search_repo("bunechko_repo_not_exist")
     assert r["total_count"] == 0
+
+
+@pytest.mark.api
+def test_repo_with_single_char_be_found(github_api):
+    r = github_api.search_repo("a")
+    assert r["total_count"] != 0
