@@ -19,3 +19,9 @@ def test_repo_can_be_found(github_api):
     r = github_api.search_repo("become-qa-auto")
     assert r["total_count"] == 50
     assert "become-qa-auto" in r["items"][0]["name"]
+
+
+@pytest.mark.api
+def test_repo_cannot_be_found(github_api):
+    r = github_api.search_repo("bunechko_repo_not_exist")
+    assert r["total_count"] == 0
