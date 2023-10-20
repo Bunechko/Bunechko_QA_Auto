@@ -43,3 +43,9 @@ def test_for_the_presence_of_commits(github_api):
 def test_subscribers(github_api):
     r = github_api.repository_subscribers("Bunechko", "Bunechko_QA_Auto")
     assert r[0]["login"] == "Bunechko"
+
+
+@pytest.mark.api
+def test_count_subscribers(github_api):
+    r = github_api.repo_subscribers_count("Bunechko", "Bunechko_QA_Auto")
+    assert r["subscribers_count"] == 1
