@@ -37,3 +37,9 @@ def test_repo_with_single_char_be_found(github_api):
 def test_for_the_presence_of_commits(github_api):
     r = github_api.statistics("Bunechko", "Bunechko_QA_Auto")
     assert r[0]["total"] != 0
+
+
+@pytest.mark.api
+def test_subscribers(github_api):
+    r = github_api.repository_subscribers("Bunechko", "Bunechko_QA_Auto")
+    assert r[0]["login"] == "Bunechko"
