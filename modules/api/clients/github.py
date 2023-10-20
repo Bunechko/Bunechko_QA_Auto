@@ -17,3 +17,11 @@ class GitHub:
         body = r.json()
 
         return body
+
+    def statistics(self, owner, repo):
+        r = requests.get(
+            f"https://api.github.com/repos/{owner}/{repo}/stats/contributors"
+        )
+        body = r.json()
+
+        return body
