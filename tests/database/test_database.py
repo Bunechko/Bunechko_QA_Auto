@@ -53,3 +53,18 @@ def test_product_delete():
     qnt = db.select_product_qnt_by_id(99)
 
     assert len(qnt) == 0
+
+
+@pytest.mark.database
+def test_detailed_orders():
+    db = Database()
+    orders = db.get_detailed_orders()
+    print("Замовлення", orders)
+    #Перевірити кількість замовлень, що дорівнює 1
+    assert len(orders) == 1
+
+    #Перевірити структуру даних
+    assert orders[0][0] == 1
+    assert orders[0][1] == "Sergii"
+    assert orders[0][2] == "солодка вода"
+    assert orders[0][3] == "з цукром"
