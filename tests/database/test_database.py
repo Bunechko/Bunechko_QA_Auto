@@ -98,3 +98,9 @@ def test_orders_date_update():
     orders = db.get_detailed_orders()
 
     assert orders[0][4] == "2023-06-02"
+
+
+@pytest.mark.database
+def test_customer_id_insert_text_value():
+    db = Database()
+    db.insert_customer('three', 'Юра', 'Тестер', 'Львів', '79000', 'Україна')
