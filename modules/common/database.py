@@ -71,3 +71,9 @@ class Database:
             VALUES ('{id}', '{name}', '{address}', '{city}', '{postalCode}', '{country}')"
         self.cursor.execute(query)
         self.connection.commit()
+    
+    def get_user_by_id(self, id):
+        query = f"SELECT * FROM customers WHERE {id}"
+        self.cursor.execute(query)
+        record = self.cursor.fetchall()
+        return record
