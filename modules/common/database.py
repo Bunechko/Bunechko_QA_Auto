@@ -77,3 +77,17 @@ class Database:
         self.cursor.execute(query)
         record = self.cursor.fetchall()
         return record
+
+    def insert_order(self, id, customer_id, product_id, order_date):
+        query = f"INSERT OR REPLACE INTO orders \
+            ('id', 'customer_id', 'product_id', 'order_date') \
+            VALUES ({id}, {customer_id}, {product_id}, '{order_date}')" 
+        self.cursor.execute(query)
+        self.connection.commit()
+    
+    
+    def get_order_by_id(self, id):
+        query = f"SELECT * FROM orders WHERE {id}"
+        self.cursor.execute(query)
+        record = self.cursor.fetchall()
+        return record
