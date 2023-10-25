@@ -80,3 +80,9 @@ def test_product_qnt_insert_text_value():
 def test_orders_date_update_text_value():
     db = Database()
     db.update_orders_date_by_id(1, '2 червня 2023 року')
+
+
+@pytest.mark.database
+def test_product_id_insert_text_value():
+    db = Database()
+    db.insert_product('five', 'тестові', 'дані', 99)
