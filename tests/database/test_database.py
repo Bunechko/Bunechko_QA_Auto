@@ -119,3 +119,16 @@ def test_customer_insert():
     assert customer[2][3] == 'Львів'
     assert customer[2][4] == '79000'
     assert customer[2][5] == 'Україна'
+
+
+@pytest.mark.database
+def test_order_insert():
+    db = Database()
+    db.insert_order(2, 3, 4, "2023-10-25")
+
+    order = db.get_order_by_id(2)
+
+    assert order[1][0] == 2
+    assert order[1][1] == 3
+    assert order[1][2] == 4
+    assert order[1][3] == "2023-10-25"
