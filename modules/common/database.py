@@ -64,3 +64,10 @@ class Database:
         query = f"UPDATE orders SET order_date = '{date}' WHERE id = {id}"
         self.cursor.execute(query)
         self.connection.commit()
+    
+    def insert_customer(self, id, name, address, city, postalCode, country):
+        query = f"INSERT OR REPLACE INTO customers \
+            (id, name, address, city, postalCode, country) \
+            VALUES ('{id}', '{name}', '{address}', '{city}', '{postalCode}', '{country}')"
+        self.cursor.execute(query)
+        self.connection.commit()
