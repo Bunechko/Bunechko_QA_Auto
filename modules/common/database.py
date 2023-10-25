@@ -59,3 +59,8 @@ class Database:
         self.cursor.execute(query)
         record = self.cursor.fetchall()
         return record
+
+    def update_orders_date_by_id(self, id, date):
+        query = f"UPDATE orders SET order_date = {date} WHERE id = {id}"
+        self.cursor.execute(query)
+        self.connection.commit()
