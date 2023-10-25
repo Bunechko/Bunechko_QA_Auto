@@ -61,6 +61,6 @@ class Database:
         return record
 
     def update_orders_date_by_id(self, id, date):
-        query = f"UPDATE orders SET order_date = {date} WHERE id = {id}"
+        query = f"UPDATE orders SET order_date = '{date}' WHERE id = {id}"
         self.cursor.execute(query)
         self.connection.commit()
