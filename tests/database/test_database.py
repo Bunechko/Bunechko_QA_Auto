@@ -104,3 +104,18 @@ def test_orders_date_update():
 def test_customer_id_insert_text_value():
     db = Database()
     db.insert_customer('three', 'Юра', 'Тестер', 'Львів', '79000', 'Україна')
+
+
+@pytest.mark.database
+def test_customer_insert():
+    db = Database()
+    db.insert_customer(3, 'Юра', 'Тестер', 'Львів', '79000', 'Україна')
+
+    customer = db.get_user_by_id(3)
+
+    assert customer[2][0] == 3
+    assert customer[2][1] == 'Юра'
+    assert customer[2][2] == 'Тестер'
+    assert customer[2][3] == 'Львів'
+    assert customer[2][4] == '79000'
+    assert customer[2][5] == 'Україна'
