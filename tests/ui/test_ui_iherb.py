@@ -4,17 +4,17 @@ import pytest
 
 @pytest.mark.iherb
 def test_iherb():
-    # Створення об'єкту сторінки
+    # Creating a page object
     add_cart = BuyGoods()
 
-    # Відкриваємо сторінку https://ua.iherb.com
+    # We open the page https://ua.iherb.com
     add_cart.go_to()
 
-    # Знаходимо товар, додаємо в корзину, переходимо до замовлення
+    # We find the product, add it to the basket, proceed to the order
     add_cart.buy_goods("now foods vitamin d3 5000 iu - 240 softgels")
 
-    # Перевіряємо, що ми на сторінці введення даних в особистий кабінет
+    # We check that we are on the data entry page in the personal account
     assert add_cart.check_title("Login Pages")
 
-    # Закриваємо браузер
+    # Close the browser
     add_cart.close()
