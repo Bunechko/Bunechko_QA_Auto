@@ -3,7 +3,8 @@
 from modules.ui.page_object.base_page import BasePage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-import time
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class BuyGoods(BasePage):
@@ -68,12 +69,14 @@ class BuyGoods(BasePage):
         # Find the "Add to Cart" button
         add_cart_goods = self.driver.find_element(By.NAME, "AddToCart")
 
-        # We emulate a click with the left mouse button, and add a delay for the animation
+        # We emulate a click with the left mouse button
         add_cart_goods.click()
-        time.sleep(2)
 
-        # We find the basket
-        carts = self.driver.find_element(By.CLASS_NAME, "checkout-button")
+        # Waiting for the right item
+        wait = WebDriverWait(self.driver, 5)
+
+        # We find the basket using waiting
+        carts = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "checkout-button")))
 
         # Emulate a click with the left mouse button
         carts.click()
@@ -112,10 +115,9 @@ class BuyGoods(BasePage):
 
         # We keep
         save_btn.click()
-        time.sleep(1)
 
-        # We find Meest delivery
-        delivery_meest_elem = self.driver.find_element(By.CLASS_NAME, 'css-3ge7j2')
+        # We find Meest delivery using waiting
+        delivery_meest_elem = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'css-3ge7j2')))
 
         # We choose Meest delivery
         delivery_meest_elem.click()
