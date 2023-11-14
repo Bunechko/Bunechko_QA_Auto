@@ -69,6 +69,8 @@ def test_detailed_orders():
     assert orders[0][2] == "солодка вода"
     assert orders[0][3] == "з цукром"
 
+# -------------------------------------------------------------------------------
+# Project task 5. Module 28. SQL
 
 @pytest.mark.database
 def test_product_qnt_insert_text_value():
@@ -132,3 +134,5 @@ def test_order_insert():
     assert order[1][1] == 3
     assert order[1][2] == 4
     assert order[1][3] == "2023-10-25"
+
+# -------------------------------------------------------------------------------
