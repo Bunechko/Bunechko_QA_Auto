@@ -13,17 +13,18 @@ class Search(BasePage):
 
     def tracking(self, tracking_number):
 
-        # Знаходимо поле для пошуку або трекінгу
+        # Find the search or tracking field
         search_query = self.driver.find_element(By.NAME, "query")
 
-        # Вводимо номер відстеження
+        # Enter the tracking number
         search_query.send_keys(tracking_number)
 
-        # Знаходимо кнопку пошуку
+        # We find the search button
         search_btn = self.driver.find_element(By.CLASS_NAME, "input-btn")
 
-        # Емулюємо натискання на кнопку пошуку
+        # Emulate pressing the search button
         search_btn.click()
 
+    # We check whether the page corresponds to the expected
     def check_title(self, expected_title):
         return self.driver.title == expected_title
