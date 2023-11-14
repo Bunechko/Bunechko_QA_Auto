@@ -16,100 +16,114 @@ class BuyGoods(BasePage):
 
     def buy_goods(self, goods_name):
 
-        # Знаходимо елементи класу для відкриття поля пошуку
+        # -----------------------------------------------------------------------
+        # The highlighted piece of code was written using GPT chat.
+        # A dynamic search element was searched.
+        # To do this, it was necessary to find the appropriate class and change it.
+
+        # We find the elements of the class to open the search field
         branded_header = self.driver.find_element(By.CLASS_NAME, "branded-header-container.header-container")
         iherb_header_search = self.driver.find_element(By.CLASS_NAME, "iherb-header-search")
 
-        # Отримуємо поточні класи елементів поля пошуку
+        # We get the current classes of search field elements
         branded_header_classes = branded_header.get_attribute("class")
         iherb_header_search_classes = iherb_header_search.get_attribute("class")
 
-        # Змінюємо класи поля пошуку
+        # We change the classes of the search field
         branded_header_classes += " search-open"
         iherb_header_search_classes += " active"
 
-        # Оновлюємо класи елементів поля пошуку за допомогою JavaScript коду
-        self.driver.execute_script("arguments[0].setAttribute('class', arguments[1]);", branded_header, branded_header_classes)
-        self.driver.execute_script("arguments[0].setAttribute('class', arguments[1]);", iherb_header_search, iherb_header_search_classes)
+        # We update the classes of search field elements using JavaScript code
+        self.driver.execute_script(
+            "arguments[0].setAttribute('class', arguments[1]);",
+            branded_header, branded_header_classes
+            )
+        self.driver.execute_script(
+            "arguments[0].setAttribute('class', arguments[1]);",
+            iherb_header_search, iherb_header_search_classes
+            )
+        
+        # -----------------------------------------------------------------------
        
-        # Знаходимо поле пошуку товару
+        # We find the product search field
         search_elem = self.driver.find_element(By.ID, "txtSearch")
 
-        # Вводимо назву товару
+        # Enter the name of the product
         search_elem.send_keys(goods_name)
 
-        # Знаходимо кнопку пошуку
+        # We find the search button
         search_btn = self.driver.find_element(By.ID, "searchBtn")
     
-        # Емулюємо клік лівою кнопкою мишки
+        # Emulate a click with the left mouse button
         search_btn.click()
 
-        # Знаходимо товар
+        # We find the product
         goods_elem = self.driver.find_element(By.ID, "pid_22335")
 
-        # Обираємо товар
+        # We choose a product
         goods_elem.click()
         
-        # Знаходимо кнопку "Додати в кошик"
+        # Find the "Add to Cart" button
         add_cart_goods = self.driver.find_element(By.NAME, "AddToCart")
 
-        # Емулюємо клік лівою кнопкою мишки, та додаємо затримку для анімації
+        # We emulate a click with the left mouse button, and add a delay for the animation
         add_cart_goods.click()
         time.sleep(2)
 
-        # Знаходимо корзину
+        # We find the basket
         carts = self.driver.find_element(By.CLASS_NAME, "checkout-button")
 
-        # Емулюємо клік лівою кнопкою мишки
+        # Emulate a click with the left mouse button
         carts.click()
 
-        # Знаходимо поле зміни кількості товару
+        # We find the field for changing the quantity of the product
         count_elem = self.driver.find_element(By.ID, "react-select-2-input")
 
-        # Вводимо кількість 5
+        # Enter the number 5
         count_elem.send_keys(5)
 
-        # Знаходимо елемент зміни доставки 
+        # We find the delivery change element
         delivery_elem = self.driver.find_element(By.CLASS_NAME, "css-g94so0")
 
-        # Емулюємо клік лівою кнопкою мишки
+        # Emulate a click with the left mouse button
         delivery_elem.click()
         
-        # Знаходимо поле зміни країни
+        # We find the country change field
         country_elem = self.driver.find_element(By.CLASS_NAME, "css-y8v00p")
 
-        # Перевіряємо значення, та вводимо "UA - Україна" за необхідності
+        # We check the value, and enter "UA - Ukraine" if necessary
         if country_elem != "UA - Україна":
             country_elem.send_keys("UA - Україна")
             country_elem.send_keys(Keys.ENTER)
         else:
             pass
 
-        # Знаходимо поле зміни індексу 
+        # We find the index change field
         zip_elem = self.driver.find_element(By.NAME, "postal-code")
 
-        # Вводимо значення "79496"
+        # Enter the value "79496"
         zip_elem.send_keys("79496")
         zip_elem.send_keys(Keys.ENTER)
 
-        # Знаходимо кнопку "Зберегти"
+        # Find the "Save" button
         save_btn = self.driver.find_element(By.CSS_SELECTOR, 'button[data-qa-element="btn-save-destination"]')
 
-        # Зберігаємо
+        # We keep
         save_btn.click()
         time.sleep(1)
 
-        # Знаходимо доставку Meest
+        # We find Meest delivery
         delivery_meest_elem = self.driver.find_element(By.CLASS_NAME, 'css-3ge7j2')
 
-        # Обираємо доставку Meest
+        # We choose Meest delivery
         delivery_meest_elem.click()
 
-        # Знаходимо елемент "Оформити замовлення"
+        # We find the element "Make an order"
         order_elem = self.driver.find_element(By.CLASS_NAME, "css-1ijv08")
 
-        # Створюємо замовлення
+        # We create an order
         order_elem.click()
 
+    # We check whether the page corresponds to the expected
     def check_title(self, expected_title):
         return self.driver.title == expected_title
