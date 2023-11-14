@@ -1,3 +1,5 @@
+# Project task 6. Module 28. UI testing
+
 from modules.ui.page_object.buy_product_iherb import BuyGoods
 import pytest
 

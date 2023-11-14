@@ -1,3 +1,5 @@
+# Project task 6. Module 28. UI testing
+
 from modules.ui.page_object.tracking_meest import Search
 import pytest
 
