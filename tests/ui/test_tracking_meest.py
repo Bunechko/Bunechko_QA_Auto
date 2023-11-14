@@ -4,17 +4,19 @@ import pytest
 
 @pytest.mark.meest
 def test_tracking_meest():
-    # Створення об'єкту сторінки
+    # Creating a page object
     tracking_meest = Search()
 
-    # Відкриваємо сторінку https://ua.meest.com
+    # We open the page https://ua.meest.com
     tracking_meest.go_to()
 
-    # Виконуємо трекінг відправлення
+    # We track the shipment
     tracking_meest.tracking("MYCV059863575PL")
 
-    # Перевіряємо, що назва сторінкитака, яку ми очікуємо
-    assert tracking_meest.check_title("Відстежити посилку ᐈ Meest Трекінг 【Україна】- Поштові & Транспортні послуги")
+    # We check that the name of the page is what we expect
+    assert tracking_meest.check_title(
+        "Відстежити посилку ᐈ Meest Трекінг 【Україна】- Поштові & Транспортні послуги"
+        )
 
-    # Закриваємо браузер
+    # Close the browser
     tracking_meest.close()
