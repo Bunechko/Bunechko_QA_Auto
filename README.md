@@ -14,7 +14,7 @@ API testing is covered by independent tests located in the file "test_github_api
 
 For database testing, standalone tests are available in the file "test_database.py," marked with the comment: "Project task 5. Module 28. SQL." These tests can be run individually using the "database" marker.
 
-## UI Testing №№
+## UI Testing
 
 UI testing is carried out through independent tests present in the files "test_tracking_meest.py" and "test_ui_iherb.py." These tests utilize custom page objects defined in "tracking_meest.py" and "buy_product_iherb.py" respectively. Execute these tests separately using the "meest" and "iherb" markers, corresponding to the specific tests.
 
